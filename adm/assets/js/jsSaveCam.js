@@ -9,7 +9,7 @@ $("#SREQPTO").blur(function () {
     var tipo = $("#TIPOEQPTO").val();
     var tamSr = $("#SREQPTO").val().length;
 
-// alert(sr);
+alert(sr);
 
 
     // if (sr === "") {

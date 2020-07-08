@@ -1,4 +1,3 @@
-
 <div class="main-content">
     <!-- Navbar -->
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
@@ -38,6 +37,17 @@
                 <div class="col-xl-3 col-lg-6 text-center">
                     <div class="card card-stats mb-4 mb-xl-0">
                         <div class="card-body">
+                            <a href="<?= URL ?>controle-biocam/index">
+                                <img src="<?= URL ?>assets/image/biometria.png" width="100px;" />
+                                <img src="<?= URL ?>assets/image/foto2.png" width="100px;" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="col-xl-3 col-lg-6 text-center">
+                    <div class="card card-stats mb-4 mb-xl-0">
+                        <div class="card-body">
                             <a href="<?= URL ?>controle-biometria/biometria">
                                 <img src="<?= URL ?>assets/image/biometria.png" width="100px;" style="cursor:pointer" />
                             </a>
@@ -49,13 +59,13 @@
                     <div class="card card-stats mb-4 mb-xl-0">
                         <div class="card-body">
                             <a href="<?= URL ?>controle-biometria/camera">
-                                <img src="<?= URL ?>assets/image/foto2.png" width="100px;" style="cursor:pointer"/>
+                                <img src="<?= URL ?>assets/image/foto2.png" width="100px;" style="cursor:pointer" />
                             </a>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="col-xl-3 col-lg-6 text-center">
+                <!-- <div class="col-xl-3 col-lg-6 text-center">
                     <div class="card card-stats mb-4 mb-xl-0">
                         <div class="card-body">
                             <a href="<?= URL ?>controle-biometria/kitpadrao">
@@ -73,11 +83,10 @@
                             </a>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
 
     </div>
 
 </div>
-

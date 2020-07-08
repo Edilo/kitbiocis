@@ -4,8 +4,9 @@
         <div class="row align-items-center justify-content-xl-between">
             <div class="col-xl-12">
                 <div class="copyright text-center text-xl-center text-muted">
-                    &copy; 2019 <a class="font-weight-bold ml-1">Desenvolvido pelo departamento de TI</a><br>
-                    <a class="font-weight-bold ml-1"> CIS ELETRÔNICA DA AMAZÔNIA</a>
+                    &copy; 2020 <a class="font-weight-bold ml-1">Desenvolvido pelo departamento de TI</a> - 
+                    <a class="font-weight-bold ml-1"> CIS ELETRÔNICA DA AMAZÔNIA</a><br/>
+                    <strong> Último Registro:<span id="lastregisterbio" class="text-dark"></span> </strong>
                 </div>
             </div>
         </div>
