@@ -50,22 +50,13 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- <div class="col-sm-4 text-center">
-                    <div class="card card-stats">
-                        <div class="card-body">
-                            <h3 class="label">Último registro</h3>
-                            <p id="lastregisterbio"></p>
-                        </div>
-                    </div>
-                </div> -->
             </div>
 
             <div class="row">
+                <!-- BIOMETRIA -->
                 <div class="col-sm-3">
                     <div class="card card-stats mb-4 mb-xl-0">
                         <div class="card-body">
-
                             <h5 class="card-title text-uppercase text-muted mb-0">
                                 <img src="<?= URL ?>assets/image/biometria.png" style="width:25px;" />1ª Leitura e inserção dos dados do equipamento.</h5><br>
                             <label>Serial number</label>
@@ -91,11 +82,12 @@
                         </div>
                     </div>
                 </div>
+                <!-- FIM BIOMETRIA -->
 
+                <!-- CAMERA -->
                 <div class="col-sm-3">
                     <div class="card card-stats mb-4 mb-xl-0">
                         <div class="card-body">
-
                             <h5 class="card-title text-uppercase text-muted mb-0">
                                 <img src="<?= URL ?>assets/image/foto2.png" width="25px;" style="cursor:pointer" />1ª Leitura e inserção dos dados do equipamento.</h5><br>
                             <label>Serial number</label>
@@ -122,6 +114,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- FIM CAMERA -->
             </div>
 
             <div class="row">
@@ -168,12 +161,9 @@
 </div>
 
 
-
-<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
-
 <script src="<?= URL ?>assets/jquery/jquery-3.2.1.min.js"></script>
 
-<script src="<?= URL ?>assets/js/jsSaveBio.js"></script>
+<script src="<?= URL ?>assets/js/jsSaveBioCam.js"></script>
 <script>
     $(document).ready(function() {
         setTimeout(function() {
