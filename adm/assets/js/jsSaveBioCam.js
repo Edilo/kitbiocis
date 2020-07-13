@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+//BIOMETRIA
 $("#SREQPTO").blur(function () {
     var sr = $("#SREQPTO").val();
     var tipo = $("#TIPOEQPTO").val();
@@ -45,7 +46,7 @@ $("#SREQPTO").blur(function () {
                                         $("#SREQPTO").val("");
                                         $('#progressbar').css('width', '0%');
                                     } else if (resultado === '2') {
-                                        $('#progressbar').css('width', '25%');
+                                        $('#progressbar').css('width', '12.5%');
                                         $("#PTEQPTO").prop('disabled', false);
                                         $("#PTEQPTO").focus();
                                     } else {
@@ -111,12 +112,12 @@ $("#PTEQPTO").blur(function () {
                                 },
                                 success: function (resultado) {
                                     if (resultado === '1') {
-                                        $('#progressbar').css('width', '50%');
+                                        $('#progressbar').css('width', '25%');
                                         $('#SRCAIXA').focus();
                                         $('#progressbar').addClass('bg-success');
                                         $('#progressbar').removeClass('bg-danger');
                                     } else if (resultado === '3') {
-                                        $('#progressbar').css('width', '25%');
+                                        $('#progressbar').css('width', '12.5%');
                                         $('#PTEQPTO').val('');
                                         $('#PTEQPTO').focus();
                                         alert('PATRIMÔNIO JA ASSOCIADO A UM OUTRO NÚMERO DE SERIE, VERIFIQUE O OCORRIDO!');
@@ -125,7 +126,7 @@ $("#PTEQPTO").blur(function () {
                             });
                         }
                     } else {
-                        $('#progressbar').css('width', '50%');
+                        $('#progressbar').css('width', '25%');
                     }
                 }, 100);
             } else {
@@ -156,7 +157,7 @@ $('#SRCAIXA').blur(function () {
                 if (sn === snc) {
                     $('#progressbar').addClass('bg-success');
                     $('#progressbar').removeClass('bg-danger');
-                    $('#progressbar').css('width', '75%');
+                    $('#progressbar').css('width', '37.5%');
                     $("#PTCAIXA").focus();
                 } else {
                     $('#progressbar').removeClass('bg-success');
@@ -207,24 +208,24 @@ $("#PTCAIXA").blur(function () {
                                 $('#ajudaSRPTbanco').val('1');
                                 $('#progressbar').addClass('bg-success');
                                 $('#progressbar').removeClass('bg-danger');
-                                $('#progressbar').css('width', '100%');
-                                $('#progressbar').addClass(' progress-bar-striped progress-bar-animated');
-                                setTimeout(function () {
-                                    $('#progressbar').css('width', '0%');
-                                    $('#progressbar').removeClass(' progress-bar-striped progress-bar-animated');
-                                    $('.resultprogres').removeClass('d-none');
-                                    $('#SREQPTO').val("");
-                                    $('#PTEQPTO').val("");
-                                    $("#PTCAIXA").val("");
-                                    $("#SRCAIXA").val("");
-                                    $("#INPUTTEXTHELP").addClass('bg-success');
-                                    setTimeout(function () {
-                                        $('.resultprogres').addClass('d-none');
-                                        $("#SREQPTO").focus();
-                                        $("#INPUTTEXTHELP").removeClass('bg-success');
-                                        $('#lastregisterbio').html('>>>> N. Serie: ' + snc + ' Patrimônio: ' + patCom);
-                                    }, 1000);
-                                }, 2000);
+                                $('#progressbar').css('width', '50%');
+                                // $('#progressbar').addClass(' progress-bar-striped progress-bar-animated');
+                                // setTimeout(function () {
+                                //     $('#progressbar').css('width', '0%');
+                                //     $('#progressbar').removeClass(' progress-bar-striped progress-bar-animated');
+                                //     $('.resultprogres').removeClass('d-none');
+                                //     $('#SREQPTO').val("");
+                                //     $('#PTEQPTO').val("");
+                                //     $("#PTCAIXA").val("");
+                                //     $("#SRCAIXA").val("");
+                                //     $("#INPUTTEXTHELP").addClass('bg-success');
+                                //     setTimeout(function () {
+                                //         $('.resultprogres').addClass('d-none');
+                                //         $("#SREQPTO").focus();
+                                //         $("#INPUTTEXTHELP").removeClass('bg-success');
+                                //         $('#lastregisterbio').html('>>>> N. Serie: ' + snc + ' Patrimônio: ' + patCom);
+                                //     }, 1000);
+                                // }, 2000);
                             } else if (resultado === '2') {
                                 alert('Não foi possivel salvar o ultimo processo!');
                             }
@@ -249,11 +250,266 @@ $("#PTCAIXA").blur(function () {
     }
 });
 
+//CAMERA
+
+$("#SREQPTOCAM").blur(function () {
+    var sr = $("#SREQPTOCAM").val();
+    var tipo = $("#TIPOEQPTOCAM").val();
+    var tamSr = $("#SREQPTOCAM").val().length;
+
+    if (sr === "") {
+
+    } else {
+        if (($.isNumeric(sr))) {
+            if (tamSr == 5) {
+                //AQUI INICIA O CODIGO QUE VAI COMPARAR SE EXISTE NO BANCO COM STATUS = 1 e PREENCHER O CAMPO SERIAL NUMBER PATRIMONIO do eqpto.
+                //FAZER A OPÇÃO DE EXCLUIR CASO O USUARIO SALVE O NUMERO de SERIE ERRADO OU NUMERO DE PATRIMONIO.
+                $.ajax({
+                    type: "POST",
+                    url: "http://192.168.100.140/kitbiocis/adm/controle-biocam/consultarSrPatInicio",
+                    data: {
+                        serial: sr,
+                        tipo: tipo
+                    },
+                    beforeSend: function () {
+
+                    },
+                    success: function (result) {
+                        if (result === 'Nao') {
+                            $.ajax({
+                                type: "POST",
+                                url: "http://192.168.100.140/kitbiocis/adm/controle-biocam/consultarSrInicio",
+                                data: {
+                                    serial: sr,
+                                    tipo: tipo
+                                },
+                                beforeSend: function () {
+
+                                },
+                                success: function (resultado) {
+                                    if (resultado === '1') {
+                                        alert('Serial ja conferido!');
+                                        $("#SREQPTOCAM").focus();
+                                        $("#SREQPTOCAM").val("");
+                                        $('#progressbar').css('width', '50%');
+                                    } else if (resultado === '2') {
+                                        $('#progressbar').css('width', '62.5%');
+                                        $("#PTEQPTOCAM").prop('disabled', false);
+                                        $("#PTEQPTOCAM").focus();
+                                    } else {
+                                        alert('Informe o administrador do sistema!');
+                                    }
+                                }
+                            });
+                        } else {
+                            var result2 = result.split("+");
+                            $('#SREQPTOCAM').val(result2[0]);
+                            $('#PTEQPTOCAM').val(result2[1]);
+                            $('#SRCAIXACAM').focus();
+                            $('#ajudaSRPTbanco').val('2');
+                        }
+                    }
+                });
+            } else {
+                alert('Tamanho de caracteres do n. serie inválido');
+                $('#SREQPTOCAM').focus();
+                $('#SREQPTOCAM').val('');
+            }
+        } else {
+            alert('Número de serie inválido');
+            $('#SREQPTOCAM').focus();
+            $('#SREQPTOCAM').val('');
+        }
+
+    }
+
+});
+
+$("#PTEQPTOCAM").blur(function () {
+    var sn = $('#SREQPTOCAM').val();
+    var pat = $('#PTEQPTOCAM').val();
+    var tipo = $('#TIPOEQPTOCAM').val();
+    var tamPt = $('#PTEQPTOCAM').val().length;
+
+    if (pat === "") {
+
+    } else {
+
+        if (($.isNumeric(pat))) {
+            if (tamPt == 9) {
+                setTimeout(function () {
+                    var ajudaSRPT = $('#ajudaSRPTbanco').val();
+                    if (ajudaSRPT === '1') {
+
+                        if (pat === "") {
+
+                        } else if (pat === sn) {
+                            $('#PTEQPTOCAM').select();
+                        } else {
+                            $.ajax({
+                                type: "POST",
+                                url: "http://192.168.100.140/kitbiocis/adm/controle-biocam/saveSnPatrimonioEqpto",
+                                data: {
+                                    serial: sn,
+                                    patrimonio: pat,
+                                    tipo: tipo
+                                },
+                                beforeSend: function () {
+
+                                },
+                                success: function (resultado) {
+                                    if (resultado === '1') {
+                                        $('#progressbar').css('width', '75%');
+                                        $('#SRCAIXACAM').focus();
+                                        $('#progressbar').addClass('bg-success');
+                                        $('#progressbar').removeClass('bg-danger');
+                                    } else if (resultado === '3') {
+                                        $('#progressbar').css('width', '62.5%');
+                                        $('#PTEQPTOCAM').val('');
+                                        $('#PTEQPTOCAM').focus();
+                                        alert('PATRIMÔNIO JA ASSOCIADO A UM OUTRO NÚMERO DE SERIE, VERIFIQUE O OCORRIDO!');
+                                    }
+                                }
+                            });
+                        }
+                    } else {
+                        $('#progressbar').css('width', '50%');
+                    }
+                }, 100);
+            } else {
+                alert('Tamanho de caracteres do patrimonio inválido');
+                $('#PTEQPTOCAM').focus();
+                $('#PTEQPTOCAM').val('');
+            }
+        } else {
+            alert('Patrimônio inválido');
+            $('#PTEQPTOCAM').focus();
+            $('#PTEQPTOCAM').val('');
+        }
+    }
+
+});
+
+$('#SRCAIXACAM').blur(function () {
+    var sn = $('#SREQPTOCAM').val();
+    var snc = $('#SRCAIXACAM').val();
+    var tamSnc = $('#SRCAIXACAM').val().length;
+
+    if (snc === '') {
+        $('#progressbar').removeClass('bg-success');
+        $('#progressbar').addClass('bg-danger');
+    } else {
+        if (($.isNumeric(snc))) {
+            if (tamSnc == 5) {
+                if (sn === snc) {
+                    $('#progressbar').addClass('bg-success');
+                    $('#progressbar').removeClass('bg-danger');
+                    $('#progressbar').css('width', '87.5%');
+                    $("#PTCAIXACAM").focus();
+                } else {
+                    $('#progressbar').removeClass('bg-success');
+                    $('#progressbar').addClass('bg-danger');
+                    $("#SRCAIXACAM").focus();
+                    $("#SRCAIXACAM").select();
+                }
+            }else {
+                alert('Tamanho de caracteres do n. serie inválido');
+                $('#SRCAIXACAM').focus();
+                $('#SRCAIXACAM').val('');
+            }
+        } else {
+            alert('Número de serie inválido');
+            $('#SRCAIXACAM').focus();
+            $('#SRCAIXACAM').val('');
+        }
+    }
+});
+
+
+$("#PTCAIXACAM").blur(function () {
+    var pat = $("#PTEQPTOCAM").val();
+    var patCom = $("#PTCAIXACAM").val();
+    var snc = $('#SRCAIXACAM').val();
+    var tamPatCom = $("#PTCAIXACAM").val().length;
+
+    if (patCom === "") {
+
+    } else {
+
+        if (($.isNumeric(patCom))) {
+            if (tamPatCom == 9) {
+                if (patCom === pat) {
+
+                    $.ajax({
+                        type: "POST",
+                        url: "http://192.168.100.140/kitbiocis/adm/controle-biocam/PesquisarSerialPatrimonio",
+                        data: {
+                            serial: snc,
+                            patrimonio: patCom
+                        },
+                        beforeSend: function () {
+
+                        },
+                        success: function (resultado) {
+                            if (resultado === '1') {
+                                $('#ajudaSRPTbanco').val('1');
+                                $('#progressbar').addClass('bg-success');
+                                $('#progressbar').removeClass('bg-danger');
+                                $('#progressbar').css('width', '100%');
+                                $('#progressbar').addClass(' progress-bar-striped progress-bar-animated');
+                                setTimeout(function () {
+                                    $('#progressbar').css('width', '0%');
+                                    $('#progressbar').removeClass(' progress-bar-striped progress-bar-animated');
+                                    $('.resultprogres').removeClass('d-none');
+                                    $('#SREQPTOCAM').val("");
+                                    $('#PTEQPTOCAM').val("");
+                                    $("#PTCAIXACAM").val("");
+                                    $("#SRCAIXACAM").val("");
+                                    $("#INPUTTEXTHELP").addClass('bg-success');
+                                    setTimeout(function () {
+                                        $('.resultprogres').addClass('d-none');
+                                        $("#SREQPTOCAM").focus();
+                                        $("#INPUTTEXTHELP").removeClass('bg-success');
+                                        $('#lastregisterbio').html('>>>> N. Serie: ' + snc + ' Patrimônio: ' + patCom);
+                                    }, 1000);
+                                }, 2000);
+                            } else if (resultado === '2') {
+                                alert('Não foi possivel salvar o ultimo processo!');
+                            }
+                        }
+                    });
+
+                } else {
+                    $('#progressbar').removeClass('bg-success');
+                    $('#progressbar').addClass('bg-danger');
+                    $("#PTCAIXACAM").select();
+                }
+            }else {
+                alert('Tamanho de caracteres do patrimonio inválido');
+                $('#PTCAIXACAM').focus();
+                $('#PTCAIXACAM').val('');
+            }
+        } else {
+            alert('Patrimônio inválido');
+            $('#PTCAIXACAM').focus();
+            $('#PTCAIXACAM').val('');
+        }
+    }
+});
+
+
+
+
+
+
+
+
+
 
 $('.modalAjax').on('click', function () {
     $.ajax({
         type: "POST",
-        url: "http://192.168.100.140/kitbiocis/adm/controle-biometria/exibirRelacaoSrPat",
+        url: "http://192.168.100.140/kitbiocis/adm/controle-biocam/exibirRelacaoSrPat",
         data: {
         },
         beforeSend: function () {

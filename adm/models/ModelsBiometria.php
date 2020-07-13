@@ -104,7 +104,7 @@ class ModelsBiometria {
     }
 
     public function exibirRelacaoSrPat() {
-        $sql = "SELECT bio.ID as idbio, usu.nome as NOME,SERIAL_NUMBER,PATRIMONIO,DATA_HORA,bio.STATUS  FROM biometria bio INNER JOIN usuario usu on usu.ID = bio.FK_ID_USUARIO WHERE TIPO_EQPTO = '1' AND STATUS_EXC = '0' ORDER BY bio.ID DESC LIMIT 0,20";
+        $sql = "SELECT bio.ID as idbio, usu.nome as NOME,SERIAL_NUMBER,PATRIMONIO,DATA_HORA,bio.STATUS  FROM biometria bio INNER JOIN usuario usu on usu.ID = bio.FK_ID_USUARIO WHERE TIPO_EQPTO IN (1,2) AND STATUS_EXC = '0' ORDER BY bio.ID DESC LIMIT 0,20";
         $read = new ModelsRead();
         $read->FullRead($sql);
 
@@ -182,7 +182,7 @@ class ModelsBiometria {
     }
 
     public function consultarSrPatInicio($sr, $tipo) {
-        $sql = "SELECT * FROM biometria WHERE (SERIAL_NUMBER = '{$sr}' AND TIPO_EQPTO = '{$tipo}') AND (STATUS = '1' AND STATUS_EXC = '0')";
+        $sql = "SELECT * FROM biometria WHERE (SERIAL_NUMBER = '{$sr}' AND STATUS <> 2 )  AND STATUS_EXC IN (1)";
         $read = new ModelsRead();
         $read->FullRead($sql);
 
