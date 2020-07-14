@@ -154,7 +154,7 @@ class ModelsBiometria {
                             if (r == true) {
                                 $.ajax({
                                     type: "POST",
-                                    url: "http://192.168.100.140/kitbiocis/adm/controle-biometria/excRelacao",
+                                    url: "http://localhost/kitbiocis/adm/controle-biometria/excRelacao",
                                     data: {
                                         id: id
                                     },
@@ -181,7 +181,7 @@ class ModelsBiometria {
         endif;
     }
 
-    public function consultarSrPatInicio($sr, $tipo) {
+    public function consultarSrPatInicio($sr) {
         $sql = "SELECT * FROM biometria WHERE (SERIAL_NUMBER = '{$sr}' AND STATUS <> 2 )  AND STATUS_EXC IN (1)";
         $read = new ModelsRead();
         $read->FullRead($sql);
@@ -194,6 +194,71 @@ class ModelsBiometria {
             echo 'Nao';
         endif;
     }
+
+
+    public function consultarSrCamInicio($sr) {
+        $sql = "SELECT * FROM biometria WHERE SERIAL_NUMBER = '{$sr}' AND STATUS_EXC = '0'";
+        $read = new ModelsRead();
+        $read->FullRead($sql);
+
+        if ($read->getResult()):
+            echo '1';
+        else:
+            echo '2';            
+        endif;
+    }
+
+    public function consultarPatCamInicio($pat) {
+        $sql = "SELECT * FROM biometria WHERE PATRIMONIO = '{$pat}' AND STATUS_EXC = '0'";
+        $read = new ModelsRead();
+        $read->FullRead($sql);
+
+        if ($read->getResult()):
+            echo '1';
+        else:
+            echo '2';            
+        endif;
+    }
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public function excRelacao($id) {
         date_default_timezone_set('America/Manaus');
@@ -263,7 +328,7 @@ class ModelsBiometria {
                             if (r == true) {
                                 $.ajax({
                                     type: "POST",
-                                    url: "http://192.168.100.140/kitbiocis/adm/controle-biometria/excRelacao",
+                                    url: "http://localhost/kitbiocis/adm/controle-biometria/excRelacao",
                                     data: {
                                         id: id
                                     },
@@ -519,7 +584,7 @@ class ModelsBiometria {
                             if (r == true) {
                                 $.ajax({
                                     type: "POST",
-                                    url: "http://192.168.100.140/kitbiocis/adm/controle-biometria/excRelacaoKitPadrao",
+                                    url: "http://localhost/kitbiocis/adm/controle-biometria/excRelacaoKitPadrao",
                                     data: {
                                         id: id
                                     },

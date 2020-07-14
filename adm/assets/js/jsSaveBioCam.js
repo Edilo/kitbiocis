@@ -19,7 +19,7 @@ $("#SREQPTO").blur(function () {
                 //FAZER A OPÇÃO DE EXCLUIR CASO O USUARIO SALVE O NUMERO de SERIE ERRADO OU NUMERO DE PATRIMONIO.
                 $.ajax({
                     type: "POST",
-                    url: "http://192.168.100.140/kitbiocis/adm/controle-biometria/consultarSrPatInicio",
+                    url: "http://localhost/kitbiocis/adm/controle-biometria/consultarSrPatInicio",
                     data: {
                         serial: sr,
                         tipo: tipo
@@ -31,7 +31,7 @@ $("#SREQPTO").blur(function () {
                         if (result === 'Nao') {
                             $.ajax({
                                 type: "POST",
-                                url: "http://192.168.100.140/kitbiocis/adm/controle-biometria/consultarSrInicio",
+                                url: "http://localhost/kitbiocis/adm/controle-biometria/consultarSrInicio",
                                 data: {
                                     serial: sr,
                                     tipo: tipo
@@ -101,7 +101,7 @@ $("#PTEQPTO").blur(function () {
                         } else {
                             $.ajax({
                                 type: "POST",
-                                url: "http://192.168.100.140/kitbiocis/adm/controle-biometria/saveSnPatrimonioEqpto",
+                                url: "http://localhost/kitbiocis/adm/controle-biometria/saveSnPatrimonioEqpto",
                                 data: {
                                     serial: sn,
                                     patrimonio: pat,
@@ -165,7 +165,7 @@ $('#SRCAIXA').blur(function () {
                     $("#SRCAIXA").focus();
                     $("#SRCAIXA").select();
                 }
-            }else {
+            } else {
                 alert('Tamanho de caracteres do n. serie inválido');
                 $('#SRCAIXA').focus();
                 $('#SRCAIXA').val('');
@@ -177,7 +177,6 @@ $('#SRCAIXA').blur(function () {
         }
     }
 });
-
 
 $("#PTCAIXA").blur(function () {
     var pat = $("#PTEQPTO").val();
@@ -195,7 +194,7 @@ $("#PTCAIXA").blur(function () {
 
                     $.ajax({
                         type: "POST",
-                        url: "http://192.168.100.140/kitbiocis/adm/controle-biometria/PesquisarSerialPatrimonio",
+                        url: "http://localhost/kitbiocis/adm/controle-biometria/PesquisarSerialPatrimonio",
                         data: {
                             serial: snc,
                             patrimonio: patCom
@@ -237,7 +236,7 @@ $("#PTCAIXA").blur(function () {
                     $('#progressbar').addClass('bg-danger');
                     $("#PTCAIXA").select();
                 }
-            }else {
+            } else {
                 alert('Tamanho de caracteres do patrimonio inválido');
                 $('#PTCAIXA').focus();
                 $('#PTCAIXA').val('');
@@ -254,7 +253,6 @@ $("#PTCAIXA").blur(function () {
 
 $("#SREQPTOCAM").blur(function () {
     var sr = $("#SREQPTOCAM").val();
-    var tipo = $("#TIPOEQPTOCAM").val();
     var tamSr = $("#SREQPTOCAM").val().length;
 
     if (sr === "") {
@@ -266,48 +264,58 @@ $("#SREQPTOCAM").blur(function () {
                 //FAZER A OPÇÃO DE EXCLUIR CASO O USUARIO SALVE O NUMERO de SERIE ERRADO OU NUMERO DE PATRIMONIO.
                 $.ajax({
                     type: "POST",
-                    url: "http://192.168.100.140/kitbiocis/adm/controle-biocam/consultarSrPatInicio",
+                    url: "http://localhost/kitbiocis/adm/controle-biocam/consultarSrCamInicio",
                     data: {
-                        serial: sr,
-                        tipo: tipo
+                        serial: sr
                     },
                     beforeSend: function () {
 
                     },
                     success: function (result) {
-                        if (result === 'Nao') {
-                            $.ajax({
-                                type: "POST",
-                                url: "http://192.168.100.140/kitbiocis/adm/controle-biocam/consultarSrInicio",
-                                data: {
-                                    serial: sr,
-                                    tipo: tipo
-                                },
-                                beforeSend: function () {
-
-                                },
-                                success: function (resultado) {
-                                    if (resultado === '1') {
-                                        alert('Serial ja conferido!');
-                                        $("#SREQPTOCAM").focus();
-                                        $("#SREQPTOCAM").val("");
-                                        $('#progressbar').css('width', '50%');
-                                    } else if (resultado === '2') {
-                                        $('#progressbar').css('width', '62.5%');
-                                        $("#PTEQPTOCAM").prop('disabled', false);
-                                        $("#PTEQPTOCAM").focus();
-                                    } else {
-                                        alert('Informe o administrador do sistema!');
-                                    }
-                                }
-                            });
-                        } else {
-                            var result2 = result.split("+");
-                            $('#SREQPTOCAM').val(result2[0]);
-                            $('#PTEQPTOCAM').val(result2[1]);
-                            $('#SRCAIXACAM').focus();
-                            $('#ajudaSRPTbanco').val('2');
+                        if (result === '1') {
+                            alert('Número de série ja cadastrada! verifique!');
+                            $("#SREQPTOCAM").val('');
+                            $("#SREQPTOCAM").focus();
+                            $('#progressbar').css('width', '50%');
                         }
+                        else if (result === '2') {
+                            $('#progressbar').css('width', '62.5%');
+                            $("#PTEQPTOCAM").prop('disabled', false);
+                            $("#PTEQPTOCAM").focus();
+                        }
+                        // if (result === 'Nao') {
+                        //     $.ajax({
+                        //         type: "POST",
+                        //         url: "http://localhost/kitbiocis/adm/controle-biocam/consultarSrInicio",
+                        //         data: {
+                        //             serial: sr,
+                        //             tipo: tipo
+                        //         },
+                        //         beforeSend: function () {
+
+                        //         },
+                        //         success: function (resultado) {
+                        //             if (resultado === '1') {
+                        //                 alert('Serial ja conferido!');
+                        //                 $("#SREQPTOCAM").focus();
+                        //                 $("#SREQPTOCAM").val("");
+                        //                 $('#progressbar').css('width', '50%');
+                        //             } else if (resultado === '2') {
+                        //                 $('#progressbar').css('width', '62.5%');
+                        //                 $("#PTEQPTOCAM").prop('disabled', false);
+                        //                 $("#PTEQPTOCAM").focus();
+                        //             } else {
+                        //                 alert('Informe o administrador do sistema!');
+                        //             }
+                        //         }
+                        //     });
+                        // } else {
+                        //     var result2 = result.split("+");
+                        //     $('#SREQPTOCAM').val(result2[0]);
+                        //     $('#PTEQPTOCAM').val(result2[1]);
+                        //     $('#SRCAIXACAM').focus();
+                        //     $('#ajudaSRPTbanco').val('2');
+                        // }
                     }
                 });
             } else {
@@ -326,9 +334,7 @@ $("#SREQPTOCAM").blur(function () {
 });
 
 $("#PTEQPTOCAM").blur(function () {
-    var sn = $('#SREQPTOCAM').val();
     var pat = $('#PTEQPTOCAM').val();
-    var tipo = $('#TIPOEQPTOCAM').val();
     var tamPt = $('#PTEQPTOCAM').val().length;
 
     if (pat === "") {
@@ -337,45 +343,75 @@ $("#PTEQPTOCAM").blur(function () {
 
         if (($.isNumeric(pat))) {
             if (tamPt == 9) {
-                setTimeout(function () {
-                    var ajudaSRPT = $('#ajudaSRPTbanco').val();
-                    if (ajudaSRPT === '1') {
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost/kitbiocis/adm/controle-biocam/consultarPtCamInicio",
+                    data: {
+                        patrimonio: pat
+                    },
+                    beforeSend: function () {
 
-                        if (pat === "") {
-
-                        } else if (pat === sn) {
-                            $('#PTEQPTOCAM').select();
-                        } else {
-                            $.ajax({
-                                type: "POST",
-                                url: "http://192.168.100.140/kitbiocis/adm/controle-biocam/saveSnPatrimonioEqpto",
-                                data: {
-                                    serial: sn,
-                                    patrimonio: pat,
-                                    tipo: tipo
-                                },
-                                beforeSend: function () {
-
-                                },
-                                success: function (resultado) {
-                                    if (resultado === '1') {
-                                        $('#progressbar').css('width', '75%');
-                                        $('#SRCAIXACAM').focus();
-                                        $('#progressbar').addClass('bg-success');
-                                        $('#progressbar').removeClass('bg-danger');
-                                    } else if (resultado === '3') {
-                                        $('#progressbar').css('width', '62.5%');
-                                        $('#PTEQPTOCAM').val('');
-                                        $('#PTEQPTOCAM').focus();
-                                        alert('PATRIMÔNIO JA ASSOCIADO A UM OUTRO NÚMERO DE SERIE, VERIFIQUE O OCORRIDO!');
-                                    }
-                                }
-                            });
+                    },
+                    success: function (result) {
+                        if (result === '1') {
+                            alert('Patrimonio ja cadastrado! verifique!');
+                            $("#PTEQPTOCAM").val('');
+                            $('#PTEQPTOCAM').focus();
+                            $('#progressbar').css('width', '62.5%');
                         }
-                    } else {
-                        $('#progressbar').css('width', '50%');
+                        else if (result === '2') {
+                            $('#progressbar').css('width', '75%');
+                            $('#SRCAIXACAM').focus();
+                            $('#progressbar').addClass('bg-success');
+                            $('#progressbar').removeClass('bg-danger');
+                            $("#PTEQPTOCAM").prop('disabled', false);
+                        }
                     }
-                }, 100);
+                });
+
+
+
+
+
+                // setTimeout(function () {
+                //     var ajudaSRPT = $('#ajudaSRPTbanco').val();
+                //     if (ajudaSRPT === '1') {
+
+                //         if (pat === "") {
+
+                //         } else if (pat === sn) {
+                //             $('#PTEQPTOCAM').select();
+                //         } else {
+                //             $.ajax({
+                //                 type: "POST",
+                //                 url: "http://localhost/kitbiocis/adm/controle-biocam/saveSnPatrimonioEqpto",
+                //                 data: {
+                //                     serial: sn,
+                //                     patrimonio: pat,
+                //                     tipo: tipo
+                //                 },
+                //                 beforeSend: function () {
+
+                //                 },
+                //                 success: function (resultado) {
+                //                     if (resultado === '1') {
+                //                         $('#progressbar').css('width', '75%');
+                //                         $('#SRCAIXACAM').focus();
+                //                         $('#progressbar').addClass('bg-success');
+                //                         $('#progressbar').removeClass('bg-danger');
+                //                     } else if (resultado === '3') {
+                //                         $('#progressbar').css('width', '62.5%');
+                //                         $('#PTEQPTOCAM').val('');
+                //                         $('#PTEQPTOCAM').focus();
+                //                         alert('PATRIMÔNIO JA ASSOCIADO A UM OUTRO NÚMERO DE SERIE, VERIFIQUE O OCORRIDO!');
+                //                     }
+                //                 }
+                //             });
+                //         }
+                //     } else {
+                //         $('#progressbar').css('width', '50%');
+                //     }
+                // }, 100);
             } else {
                 alert('Tamanho de caracteres do patrimonio inválido');
                 $('#PTEQPTOCAM').focus();
@@ -412,7 +448,7 @@ $('#SRCAIXACAM').blur(function () {
                     $("#SRCAIXACAM").focus();
                     $("#SRCAIXACAM").select();
                 }
-            }else {
+            } else {
                 alert('Tamanho de caracteres do n. serie inválido');
                 $('#SRCAIXACAM').focus();
                 $('#SRCAIXACAM').val('');
@@ -425,12 +461,14 @@ $('#SRCAIXACAM').blur(function () {
     }
 });
 
-
 $("#PTCAIXACAM").blur(function () {
     var pat = $("#PTEQPTOCAM").val();
     var patCom = $("#PTCAIXACAM").val();
     var snc = $('#SRCAIXACAM').val();
     var tamPatCom = $("#PTCAIXACAM").val().length;
+    var tipo = $('#TIPOEQPTOCAM').val();
+    var srbio = $("#SRCAIXA").val();
+    var ptbio = $("#PTCAIXA").val();
 
     if (patCom === "") {
 
@@ -442,17 +480,18 @@ $("#PTCAIXACAM").blur(function () {
 
                     $.ajax({
                         type: "POST",
-                        url: "http://192.168.100.140/kitbiocis/adm/controle-biocam/PesquisarSerialPatrimonio",
+                        url: "http://localhost/kitbiocis/adm/controle-biocam/saveSnPatrimonioEqpto",
                         data: {
                             serial: snc,
-                            patrimonio: patCom
+                            patrimonio: patCom,
+                            tipo: tipo
                         },
                         beforeSend: function () {
 
                         },
                         success: function (resultado) {
                             if (resultado === '1') {
-                                $('#ajudaSRPTbanco').val('1');
+                                $('#ajudaSRPTbancoCam').val('1');
                                 $('#progressbar').addClass('bg-success');
                                 $('#progressbar').removeClass('bg-danger');
                                 $('#progressbar').css('width', '100%');
@@ -465,12 +504,16 @@ $("#PTCAIXACAM").blur(function () {
                                     $('#PTEQPTOCAM').val("");
                                     $("#PTCAIXACAM").val("");
                                     $("#SRCAIXACAM").val("");
+                                    $('#SREQPTO').val("");
+                                    $('#PTEQPTO').val("");
+                                    $("#PTCAIXA").val("");
+                                    $("#SRCAIXA").val("");
                                     $("#INPUTTEXTHELP").addClass('bg-success');
                                     setTimeout(function () {
                                         $('.resultprogres').addClass('d-none');
-                                        $("#SREQPTOCAM").focus();
+                                        $("#SREQPTO").focus();
                                         $("#INPUTTEXTHELP").removeClass('bg-success');
-                                        $('#lastregisterbio').html('>>>> N. Serie: ' + snc + ' Patrimônio: ' + patCom);
+                                        $('#lastregisterbio').html('<br/> >>>>BIO N. Serie: ' + srbio + ' Patrimônio: ' + ptbio + ' <br/>  >>>>CAM N. Serie: ' + snc + ' Patrimônio: ' + patCom);
                                     }, 1000);
                                 }, 2000);
                             } else if (resultado === '2') {
@@ -479,12 +522,60 @@ $("#PTCAIXACAM").blur(function () {
                         }
                     });
 
+
+
+
+
+
+                    // $.ajax({
+                    //     type: "POST",
+                    //     url: "http://localhost/kitbiocis/adm/controle-biocam/PesquisarSerialPatrimonio",
+                    //     data: {
+                    //         serial: snc,
+                    //         patrimonio: patCom
+                    //     },
+                    //     beforeSend: function () {
+
+                    //     },
+                    //     success: function (resultado) {
+                    //         if (resultado === '1') {
+                    //             $('#ajudaSRPTbanco').val('1');
+                    //             $('#progressbar').addClass('bg-success');
+                    //             $('#progressbar').removeClass('bg-danger');
+                    //             $('#progressbar').css('width', '100%');
+                    //             $('#progressbar').addClass(' progress-bar-striped progress-bar-animated');
+                    //             setTimeout(function () {
+                    //                 $('#progressbar').css('width', '0%');
+                    //                 $('#progressbar').removeClass(' progress-bar-striped progress-bar-animated');
+                    //                 $('.resultprogres').removeClass('d-none');
+                    //                 $('#SREQPTOCAM').val("");
+                    //                 $('#PTEQPTOCAM').val("");
+                    //                 $("#PTCAIXACAM").val("");
+                    //                 $("#SRCAIXACAM").val("");
+                    //                 $('#SREQPTO').val("");
+                    //                 $('#PTEQPTO').val("");
+                    //                 $("#PTCAIXA").val("");
+                    //                 $("#SRCAIXA").val("");
+                    //                 $("#INPUTTEXTHELP").addClass('bg-success');
+                    //                 setTimeout(function () {
+                    //                     $('.resultprogres').addClass('d-none');
+                    //                     $("#SREQPTO").focus();
+                    //                     $("#INPUTTEXTHELP").removeClass('bg-success');
+                    //                     $('#lastregisterbio').html('<br/> >>>>BIO N. Serie: ' + srbio + ' Patrimônio: ' + ptbio + ' <br/>  >>>>CAM N. Serie: ' + snc + ' Patrimônio: ' + patCom);
+                    //                 }, 1000);
+                    //             }, 2000);
+                    //         } else if (resultado === '2') {
+                    //             alert('Não foi possivel salvar o ultimo processo!');
+                    //         }
+                    //     }
+                    // });
+
                 } else {
                     $('#progressbar').removeClass('bg-success');
                     $('#progressbar').addClass('bg-danger');
                     $("#PTCAIXACAM").select();
                 }
-            }else {
+            } else {
                 alert('Tamanho de caracteres do patrimonio inválido');
                 $('#PTCAIXACAM').focus();
                 $('#PTCAIXACAM').val('');
@@ -509,7 +600,7 @@ $("#PTCAIXACAM").blur(function () {
 $('.modalAjax').on('click', function () {
     $.ajax({
         type: "POST",
-        url: "http://192.168.100.140/kitbiocis/adm/controle-biocam/exibirRelacaoSrPat",
+        url: "http://localhost/kitbiocis/adm/controle-biocam/exibirRelacaoSrPat",
         data: {
         },
         beforeSend: function () {
@@ -525,7 +616,7 @@ $('.modalAjax').on('click', function () {
 $('.modalAjax2').on('click', function () {
     $.ajax({
         type: "POST",
-        url: "http://192.168.100.140/kitbiocis/adm/controle-biometria/exibirRelacaoSrPatCam",
+        url: "http://localhost/kitbiocis/adm/controle-biometria/exibirRelacaoSrPatCam",
         data: {
         },
         beforeSend: function () {

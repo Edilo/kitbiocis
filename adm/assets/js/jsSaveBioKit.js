@@ -10,7 +10,7 @@ $('#SREQPTOBIO').blur(function () {
     if (SREQPTOBIO !== '') {
         $.ajax({
             type: "POST",
-            url: "http://192.168.100.140/kitbiocis/adm/controle-biometria/consultarSrBio",
+            url: "http://localhost/kitbiocis/adm/controle-biometria/consultarSrBio",
             data: {
                 serial: SREQPTOBIO
             },
@@ -45,7 +45,7 @@ $('#PTEQPTOBIO').blur(function () {
         if (PTEQPTOBIO !== '') {
         $.ajax({
             type: "POST",
-            url: "http://192.168.100.140/kitbiocis/adm/controle-biometria/consultarPtBio",
+            url: "http://localhost/kitbiocis/adm/controle-biometria/consultarPtBio",
             data: {
                 patrimonio: PTEQPTOBIO,
                 serial: SREQPTOBIO
@@ -79,7 +79,7 @@ $('#SREQPTOCAM').blur(function () {
         if(SREQPTOCAM !== SREQPTOBIO){
             $.ajax({
             type: "POST",
-            url: "http://192.168.100.140/kitbiocis/adm/controle-biometria/consultarSrCam",
+            url: "http://localhost/kitbiocis/adm/controle-biometria/consultarSrCam",
             data: {
                 serial: SREQPTOCAM
             },
@@ -113,7 +113,7 @@ $('#PTEQPTOCAM').blur(function () {
         if(PTEQPTOCAM !== PTEQPTOBIO){
             $.ajax({
             type: "POST",
-            url: "http://192.168.100.140/kitbiocis/adm/controle-biometria/consultarPtCam",
+            url: "http://localhost/kitbiocis/adm/controle-biometria/consultarPtCam",
             data: {
                 patrimonio: PTEQPTOCAM,
                 serial: SREQPTOCAM
@@ -196,7 +196,7 @@ $('#PTCAIXAKITCAM').blur(function () {
             var PTEQPTOCAM = $('#PTEQPTOCAM').val();
             $.ajax({
                 type: "POST",
-                url: "http://192.168.100.140/kitbiocis/adm/controle-biometria/salvarProcessoFinal",
+                url: "http://localhost/kitbiocis/adm/controle-biometria/salvarProcessoFinal",
                 data: {
                     patrimonioBio: PTEQPTOBIO,
                     serialBio: SREQPTOBIO,
@@ -252,7 +252,7 @@ $('#PTCAIXAKITCAM').blur(function () {
 $('.modalAjax3').on('click', function () {
     $.ajax({
         type: "POST",
-        url: "http://192.168.100.140/kitbiocis/adm/controle-biometria/exibirRelacaoKitPadrao",
+        url: "http://localhost/kitbiocis/adm/controle-biometria/exibirRelacaoKitPadrao",
         data: {
         },
         beforeSend: function () {

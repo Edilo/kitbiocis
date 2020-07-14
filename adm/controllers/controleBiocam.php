@@ -90,7 +90,22 @@ class ControleBiocam {
         $excRelacao = new ModelsBiometria();
         $excRelacao->excRelacao($id);
     }
-    
+
+
+
+    public function consultarSrCamInicio(){
+        $serial = filter_input(INPUT_POST, 'serial', FILTER_DEFAULT);
+        $consultarSrCamInicio = new ModelsBiometria();
+        $consultarSrCamInicio->consultarSrCamInicio($serial);
+
+    }
+
+    public function consultarPtCamInicio(){
+        $patrimonio = filter_input(INPUT_POST, 'patrimonio', FILTER_DEFAULT);
+        $consultarPatCamInicio = new ModelsBiometria();
+        $consultarPatCamInicio->consultarPatCamInicio($patrimonio);
+
+    }
     
     ////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////

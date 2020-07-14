@@ -80,6 +80,7 @@
                             <label>Patrimônio</label>
                             <input type="text" class="form-control" id="PTCAIXA">
                             <input type="hidden" id="ajudaSRPTbanco" value="1">
+                            <input type="hidden" id="ajudaSRPTbancoCam" value="1">
                         </div>
                     </div>
                 </div>
