@@ -1,6 +1,6 @@
 <?php
 session_start();
-define('URL', 'http://localhost/kitbiocis/adm/');
+define('URL', 'http://192.168.100.140/kitbiocis/adm/');
 
 define('CONTROLER', 'controle-login');
 define('METODO', 'login');

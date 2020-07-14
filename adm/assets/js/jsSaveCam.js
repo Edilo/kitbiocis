@@ -21,7 +21,7 @@ alert(sr);
     //             //FAZER A OPÇÃO DE EXCLUIR CASO O USUARIO SALVE O NUMERO de SERIE ERRADO OU NUMERO DE PATRIMONIO.
     //             $.ajax({
     //                 type: "POST",
-    //                 url: "http://localhost/kitbiocis/adm/controle-biometria/consultarSrPatInicio",
+    //                 url: "http://192.168.100.140/kitbiocis/adm/controle-biometria/consultarSrPatInicio",
     //                 data: {
     //                     serial: sr,
     //                     tipo: tipo
@@ -33,7 +33,7 @@ alert(sr);
     //                     if (result === 'Nao') {
     //                         $.ajax({
     //                             type: "POST",
-    //                             url: "http://localhost/kitbiocis/adm/controle-biometria/consultarSrInicio",
+    //                             url: "http://192.168.100.140/kitbiocis/adm/controle-biometria/consultarSrInicio",
     //                             data: {
     //                                 serial: sr,
     //                                 tipo: tipo
@@ -103,7 +103,7 @@ $("#PTEQPTO").blur(function () {
                         } else {
                             $.ajax({
                                 type: "POST",
-                                url: "http://localhost/kitbiocis/adm/controle-biometria/saveSnPatrimonioEqpto",
+                                url: "http://192.168.100.140/kitbiocis/adm/controle-biometria/saveSnPatrimonioEqpto",
                                 data: {
                                     serial: sn,
                                     patrimonio: pat,
@@ -197,7 +197,7 @@ $("#PTCAIXA").blur(function () {
 
                     $.ajax({
                         type: "POST",
-                        url: "http://localhost/kitbiocis/adm/controle-biometria/PesquisarSerialPatrimonio",
+                        url: "http://192.168.100.140/kitbiocis/adm/controle-biometria/PesquisarSerialPatrimonio",
                         data: {
                             serial: snc,
                             patrimonio: patCom
@@ -256,7 +256,7 @@ $("#PTCAIXA").blur(function () {
 $('.modalAjax').on('click', function () {
     $.ajax({
         type: "POST",
-        url: "http://localhost/kitbiocis/adm/controle-biometria/exibirRelacaoSrPat",
+        url: "http://192.168.100.140/kitbiocis/adm/controle-biometria/exibirRelacaoSrPat",
         data: {
         },
         beforeSend: function () {

@@ -45,6 +45,23 @@ class ModelsBiometria {
         endif;
     }
 
+    public function saveSnPatrimonioEqptoCam($Dados) {
+        if ($this->consultarPatrimonio($Dados['PATRIMONIO'])):
+            if ($this->Resultado == 1):
+                echo '3';
+            elseif ($this->Resultado == 2):
+                $create = new ModelsCreate();
+                $create->ExeCreate('biometria', $Dados);
+
+                if ($create->getResult()):
+                    echo '1';
+                else:
+                    echo '2';
+                endif;
+            endif;
+        endif;
+    }
+
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
@@ -154,7 +171,7 @@ class ModelsBiometria {
                             if (r == true) {
                                 $.ajax({
                                     type: "POST",
-                                    url: "http://localhost/kitbiocis/adm/controle-biometria/excRelacao",
+                                    url: "http://192.168.100.140/kitbiocis/adm/controle-biometria/excRelacao",
                                     data: {
                                         id: id
                                     },
@@ -328,7 +345,7 @@ class ModelsBiometria {
                             if (r == true) {
                                 $.ajax({
                                     type: "POST",
-                                    url: "http://localhost/kitbiocis/adm/controle-biometria/excRelacao",
+                                    url: "http://192.168.100.140/kitbiocis/adm/controle-biometria/excRelacao",
                                     data: {
                                         id: id
                                     },
@@ -584,7 +601,7 @@ class ModelsBiometria {
                             if (r == true) {
                                 $.ajax({
                                     type: "POST",
-                                    url: "http://localhost/kitbiocis/adm/controle-biometria/excRelacaoKitPadrao",
+                                    url: "http://192.168.100.140/kitbiocis/adm/controle-biometria/excRelacaoKitPadrao",
                                     data: {
                                         id: id
                                     },

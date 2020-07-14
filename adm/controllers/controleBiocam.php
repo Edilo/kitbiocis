@@ -58,6 +58,27 @@ class ControleBiocam {
         $biometria->saveSnPatrimonioEqpto($Dados);
         
     }
+
+    public function saveSnPatrimonioEqptoCam(){
+        $serial = filter_input(INPUT_POST, 'serial', FILTER_DEFAULT);
+        $patrimonio = filter_input(INPUT_POST, 'patrimonio', FILTER_DEFAULT);
+        $tipo = filter_input(INPUT_POST, 'tipo', FILTER_DEFAULT);
+        date_default_timezone_set('America/Manaus');
+        $date = date('Y-m-d H:i:s');
+        $iduser = $_SESSION['ID'];
+        $Dados = [
+            'SERIAL_NUMBER' => $serial,
+            'PATRIMONIO' => $patrimonio,
+            'FK_ID_USUARIO' => $iduser,
+            'DATA_HORA' => $date,
+            'TIPO_EQPTO' => $tipo,
+            'STATUS' => '2'
+        ];
+        
+        $biometria = new ModelsBiometria();
+        $biometria->saveSnPatrimonioEqptoCam($Dados);
+        
+    }
     
     public function PesquisarSerialPatrimonio(){
         $serial = filter_input(INPUT_POST, 'serial', FILTER_DEFAULT);

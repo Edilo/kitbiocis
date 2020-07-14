@@ -18,7 +18,7 @@
 //    if (SREQPTOBIO !== '') {
 //        $.ajax({
 //            type: "POST",
-//            url: "http://localhost/kitbiocis/adm/controle-biometria/consultarSrBio",
+//            url: "http://192.168.100.140/kitbiocis/adm/controle-biometria/consultarSrBio",
 //            data: {
 //                serial: SREQPTOBIO
 //            },
@@ -53,7 +53,7 @@
 //        if (PTEQPTOBIO !== '') {
 //        $.ajax({
 //            type: "POST",
-//            url: "http://localhost/kitbiocis/adm/controle-biometria/consultarPtBio",
+//            url: "http://192.168.100.140/kitbiocis/adm/controle-biometria/consultarPtBio",
 //            data: {
 //                patrimonio: PTEQPTOBIO,
 //                serial: SREQPTOBIO
@@ -87,7 +87,7 @@
 //        if(SREQPTOCAM !== SREQPTOBIO){
 //            $.ajax({
 //            type: "POST",
-//            url: "http://localhost/kitbiocis/adm/controle-biometria/consultarSrCam",
+//            url: "http://192.168.100.140/kitbiocis/adm/controle-biometria/consultarSrCam",
 //            data: {
 //                serial: SREQPTOCAM
 //            },
@@ -121,7 +121,7 @@
 //        if(PTEQPTOCAM !== PTEQPTOBIO){
 //            $.ajax({
 //            type: "POST",
-//            url: "http://localhost/kitbiocis/adm/controle-biometria/consultarPtCam",
+//            url: "http://192.168.100.140/kitbiocis/adm/controle-biometria/consultarPtCam",
 //            data: {
 //                patrimonio: PTEQPTOCAM,
 //                serial: SREQPTOCAM
@@ -204,7 +204,7 @@
 //            var PTEQPTOCAM = $('#PTEQPTOCAM').val();
 //            $.ajax({
 //                type: "POST",
-//                url: "http://localhost/kitbiocis/adm/controle-biometria/salvarProcessoFinal",
+//                url: "http://192.168.100.140/kitbiocis/adm/controle-biometria/salvarProcessoFinal",
 //                data: {
 //                    patrimonioBio: PTEQPTOBIO,
 //                    serialBio: SREQPTOBIO,
@@ -260,7 +260,7 @@
 //$('.modalAjax3').on('click', function () {
 //    $.ajax({
 //        type: "POST",
-//        url: "http://localhost/kitbiocis/adm/controle-biometria/exibirRelacaoKitPadrao",
+//        url: "http://192.168.100.140/kitbiocis/adm/controle-biometria/exibirRelacaoKitPadrao",
 //        data: {
 //        },
 //        beforeSend: function () {

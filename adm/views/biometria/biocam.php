@@ -61,9 +61,9 @@
                             <h5 class="card-title text-uppercase text-muted mb-0">
                                 <img src="<?= URL ?>assets/image/biometria.png" style="width:25px;" />1ª Leitura e inserção dos dados do equipamento.</h5><br>
                             <label>Serial number</label>
-                            <input type="text" class="form-control" id="SREQPTO">
+                            <input type="text" class="form-control" placeholder="00000" id="SREQPTO">
                             <label>Patrimônio</label>
-                            <input type="text" class="form-control" id="PTEQPTO">
+                            <input type="text" class="form-control" placeholder="000000000" id="PTEQPTO">
                         </div>
                     </div>
                 </div>
@@ -76,9 +76,9 @@
                                 <img src="<?= URL ?>assets/image/caixaindividual.png" width="25px;" style="cursor:pointer" />
                                 2ª Comparação de dados da caixa com o equipamento.</h5><br>
                             <label>Serial number</label>
-                            <input type="text" class="form-control" id="SRCAIXA">
+                            <input type="text" class="form-control"  placeholder="00000" id="SRCAIXA">
                             <label>Patrimônio</label>
-                            <input type="text" class="form-control" id="PTCAIXA">
+                            <input type="text" class="form-control" placeholder="000000000" id="PTCAIXA">
                             <input type="hidden" id="ajudaSRPTbanco" value="1">
                             <input type="hidden" id="ajudaSRPTbancoCam" value="1">
                         </div>
@@ -93,9 +93,9 @@
                             <h5 class="card-title text-uppercase text-muted mb-0">
                                 <img src="<?= URL ?>assets/image/foto2.png" width="25px;" style="cursor:pointer" />1ª Leitura e inserção dos dados do equipamento.</h5><br>
                             <label>Serial number</label>
-                            <input type="text" class="form-control" id="SREQPTOCAM">
+                            <input type="text" class="form-control" id="SREQPTOCAM" placeholder="ak.00-00000" data-mask="SS.00-00000">
                             <label>Patrimônio</label>
-                            <input type="text" class="form-control" id="PTEQPTOCAM">
+                            <input type="text" class="form-control" id="PTEQPTOCAM" placeholder="000000000">
                         </div>
                     </div>
                 </div>
@@ -109,9 +109,9 @@
                                 <img src="<?= URL ?>assets/image/caixaindividual.png" width="25px;" style="cursor:pointer" />
                                 2ª Comparação de dados da caixa com o equipamento.</h5><br>
                             <label>Serial number</label>
-                            <input type="text" class="form-control" id="SRCAIXACAM">
+                            <input type="text" class="form-control" id="SRCAIXACAM"  placeholder="ak.00-00000" data-mask="SS.00-00000">
                             <label>Patrimônio</label>
-                            <input type="text" class="form-control" id="PTCAIXACAM">
+                            <input type="text" class="form-control" id="PTCAIXACAM" placeholder="000000000">
                             <input type="hidden" id="ajudaSRPTbanco" value="1">
                         </div>
                     </div>

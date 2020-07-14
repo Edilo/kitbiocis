@@ -3,5 +3,5 @@
 //$Url = new ConfigController();
 //$Url->carregar();
 
-header('Location: http://localhost/kitbiocis/adm/');
+header('Location: http://192.168.100.140/kitbiocis/adm/');
 exit();

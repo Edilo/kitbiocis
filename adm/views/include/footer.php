@@ -26,6 +26,15 @@
 <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
 <script src="<?= URL ?>assets/js/jsChangeDate.js"></script>
 
+<script src="<?=URL?>assets/jquery/jquery-mask.js"></script>
+<script>
+$(document).ready(function(){
+    $('#SREQPTOCAM').mask('SS.00-00000');
+    $('#SRCAIXACAM').mask('SS.00-00000');
+});
+
+</script>
+
 </body>
 
 </html>
