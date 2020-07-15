@@ -4,6 +4,16 @@
  * and open the template in the editor.
  */
 
+$(document).ready(function(){
+    $('#PTEQPTO').prop('disabled',true);
+    $('#SRCAIXA').prop('disabled',true);
+    $('#PTCAIXA').prop('disabled',true);
+    $('#PTEQPTOCAM').prop('disabled',true);
+    $('#SRCAIXACAM').prop('disabled',true);
+    $('#PTCAIXACAM').prop('disabled',true);
+});
+
+
 //BIOMETRIA
 $("#SREQPTO").blur(function () {
     var sr = $("#SREQPTO").val();
@@ -283,42 +293,46 @@ $("#PTEQPTOCAM").blur(function () {
     if (pat === "") {
 
     } else {
-        if (tamPt === 9) {
-            if (($.isNumeric(pat))) {
-                $.ajax({
-                    type: "POST",
-                    url: "http://192.168.100.140/kitbiocis/adm/controle-biocam/consultarPtCamInicio",
-                    data: {
-                        patrimonio: pat
-                    },
-                    beforeSend: function () {
+        if ($('#SREQPTOCAM').val() === '') {
 
-                    },
-                    success: function (result) {
-                        if (result === '1') {
-                            alert('Patrimonio ja cadastrado! verifique!');
-                            $("#PTEQPTOCAM").val('');
-                            $('#PTEQPTOCAM').focus();
-                            $('#progressbar').css('width', '62.5%');
+        } else {
+            if (tamPt === 9) {
+                if (($.isNumeric(pat))) {
+                    $.ajax({
+                        type: "POST",
+                        url: "http://192.168.100.140/kitbiocis/adm/controle-biocam/consultarPtCamInicio",
+                        data: {
+                            patrimonio: pat
+                        },
+                        beforeSend: function () {
+
+                        },
+                        success: function (result) {
+                            if (result === '1') {
+                                alert('Patrimonio ja cadastrado! verifique!');
+                                $("#PTEQPTOCAM").val('');
+                                $('#PTEQPTOCAM').focus();
+                                $('#progressbar').css('width', '62.5%');
+                            }
+                            else if (result === '2') {
+                                $('#progressbar').css('width', '75%');
+                                $('#SRCAIXACAM').focus();
+                                $('#progressbar').addClass('bg-success');
+                                $('#progressbar').removeClass('bg-danger');
+                                $("#PTEQPTOCAM").prop('disabled', false);
+                            }
                         }
-                        else if (result === '2') {
-                            $('#progressbar').css('width', '75%');
-                            $('#SRCAIXACAM').focus();
-                            $('#progressbar').addClass('bg-success');
-                            $('#progressbar').removeClass('bg-danger');
-                            $("#PTEQPTOCAM").prop('disabled', false);
-                        }
-                    }
-                });
+                    });
+                } else {
+                    alert('Patrimônio inválido');
+                    $('#PTEQPTOCAM').focus();
+                    $('#PTEQPTOCAM').val('');
+                }
             } else {
-                alert('Patrimônio inválido');
+                alert('Tamanho de caracteres do patrimonio inválido');
                 $('#PTEQPTOCAM').focus();
                 $('#PTEQPTOCAM').val('');
             }
-        } else {
-            alert('Tamanho de caracteres do patrimonio inválido');
-            $('#PTEQPTOCAM').focus();
-            $('#PTEQPTOCAM').val('');
         }
     }
 
@@ -362,13 +376,13 @@ $("#PTCAIXACAM").blur(function () {
     var srbio = $("#SRCAIXA").val();
     var ptbio = $("#PTCAIXA").val();
 
+
     if (patCom === "") {
 
     } else {
         if (($.isNumeric(patCom))) {
             if (tamPatCom === 9) {
                 if (patCom === pat) {
-
                     $.ajax({
                         type: "POST",
                         url: "http://192.168.100.140/kitbiocis/adm/controle-biocam/saveSnPatrimonioEqptoCam",
@@ -412,7 +426,6 @@ $("#PTCAIXACAM").blur(function () {
                             }
                         }
                     });
-
                 } else {
                     $('#progressbar').removeClass('bg-success');
                     $('#progressbar').addClass('bg-danger');
