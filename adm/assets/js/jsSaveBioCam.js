@@ -4,13 +4,15 @@
  * and open the template in the editor.
  */
 
-$(document).ready(function(){
-    $('#PTEQPTO').prop('disabled',true);
-    $('#SRCAIXA').prop('disabled',true);
-    $('#PTCAIXA').prop('disabled',true);
-    $('#PTEQPTOCAM').prop('disabled',true);
-    $('#SRCAIXACAM').prop('disabled',true);
-    $('#PTCAIXACAM').prop('disabled',true);
+$(document).ready(function () {
+
+    $('#PTEQPTO').prop('disabled', true);
+    $('#SRCAIXA').prop('disabled', true);
+    $('#PTCAIXA').prop('disabled', true);
+
+    $('#PTEQPTOCAM').prop('disabled', true);
+    $('#SRCAIXACAM').prop('disabled', true);
+    $('#PTCAIXACAM').prop('disabled', true);
 });
 
 
@@ -123,6 +125,7 @@ $("#PTEQPTO").blur(function () {
                                 success: function (resultado) {
                                     if (resultado === '1') {
                                         $('#progressbar').css('width', '25%');
+                                        $('#SRCAIXA').prop('disabled', false);
                                         $('#SRCAIXA').focus();
                                         $('#progressbar').addClass('bg-success');
                                         $('#progressbar').removeClass('bg-danger');
@@ -168,6 +171,7 @@ $('#SRCAIXA').blur(function () {
                     $('#progressbar').addClass('bg-success');
                     $('#progressbar').removeClass('bg-danger');
                     $('#progressbar').css('width', '37.5%');
+                    $('#PTCAIXA').prop('disabled', false);
                     $("#PTCAIXA").focus();
                 } else {
                     $('#progressbar').removeClass('bg-success');
@@ -316,10 +320,10 @@ $("#PTEQPTOCAM").blur(function () {
                             }
                             else if (result === '2') {
                                 $('#progressbar').css('width', '75%');
-                                $('#SRCAIXACAM').focus();
                                 $('#progressbar').addClass('bg-success');
                                 $('#progressbar').removeClass('bg-danger');
-                                $("#PTEQPTOCAM").prop('disabled', false);
+                                $('#SRCAIXACAM').prop('disabled', false);
+                                $('#SRCAIXACAM').focus();
                             }
                         }
                     });
@@ -352,6 +356,7 @@ $('#SRCAIXACAM').blur(function () {
                 $('#progressbar').addClass('bg-success');
                 $('#progressbar').removeClass('bg-danger');
                 $('#progressbar').css('width', '87.5%');
+                $('#PTCAIXACAM').prop('disabled', false);
                 $("#PTCAIXACAM").focus();
             } else {
                 $('#progressbar').removeClass('bg-success');
@@ -414,6 +419,14 @@ $("#PTCAIXACAM").blur(function () {
                                     $("#PTCAIXA").val("");
                                     $("#SRCAIXA").val("");
                                     $("#INPUTTEXTHELP").addClass('bg-success');
+
+                                    $('#PTEQPTO').prop('disabled', true);
+                                    $('#SRCAIXA').prop('disabled', true);
+                                    $('#PTCAIXA').prop('disabled', true);
+
+                                    $('#PTEQPTOCAM').prop('disabled', true);
+                                    $('#SRCAIXACAM').prop('disabled', true);
+                                    $('#PTCAIXACAM').prop('disabled', true);
                                     setTimeout(function () {
                                         $('.resultprogres').addClass('d-none');
                                         $("#SREQPTO").focus();
